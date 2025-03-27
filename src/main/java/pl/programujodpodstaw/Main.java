@@ -16,10 +16,11 @@ public class Main {
         integersArray[4] = 8;
         integersArray[5] = 7;
 
-        int[] maxSubstringArray = new int[integersArray.length];
+        int[] maxSubstringArray;
 
         int maxValueOfNextKNumbers = 0;
         if (k != 1) {
+            maxSubstringArray = new int[integersArray.length + 1 - k];
             for (int i = 0; i <= integersArray.length - k; i++) {
                 for (int j = i + 1; j < k + i; j++) {
                     int max = Math.max(integersArray[j - 1], integersArray[j]);
@@ -32,6 +33,7 @@ public class Main {
                 maxSubstringArray[i] = maxValueOfNextKNumbers;
             }
         }else {
+            maxSubstringArray = new int[integersArray.length];
             System.arraycopy(integersArray, 0, maxSubstringArray, 0, integersArray.length);
         }
 
