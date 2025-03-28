@@ -10,11 +10,17 @@ public class Main {
 
         int[] integersArray = {10, 5, 2, 7, 8, 7};
 
-        int[] maxSubstringArray;
+        for (int n : Main.maxValueOfUserSubArray(integersArray, userNumber)) {
+            System.out.print(n + " ");
+        }
+    }
+
+    public static int[] maxValueOfUserSubArray(int[] integersArray, int userNumber){
+        int[] maxSubArray;
 
         int maxValueOfSubArray = 0;
         if (userNumber != 1) {
-            maxSubstringArray = new int[integersArray.length + 1 - userNumber];
+            maxSubArray = new int[integersArray.length + 1 - userNumber];
             for (int i = 0; i <= integersArray.length - userNumber; i++) {
                 for (int j = i + 1; j < userNumber + i; j++) {
                     int max = Math.max(integersArray[j - 1], integersArray[j]);
@@ -24,15 +30,13 @@ public class Main {
                         maxValueOfSubArray = max;
                     }
                 }
-                maxSubstringArray[i] = maxValueOfSubArray;
+                maxSubArray[i] = maxValueOfSubArray;
             }
         }else {
-            maxSubstringArray = new int[integersArray.length];
-            System.arraycopy(integersArray, 0, maxSubstringArray, 0, integersArray.length);
+            maxSubArray = new int[integersArray.length];
+            System.arraycopy(integersArray, 0, maxSubArray, 0, integersArray.length);
         }
-
-        for (int n : maxSubstringArray) {
-            System.out.println(n);
-        }
+        return maxSubArray;
     }
+
 }
